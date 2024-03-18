@@ -1,6 +1,10 @@
+import { useAppContext } from "../context/AppContext";
+
 function Header() {
+  const { setShowSideNavMobile, showSideNavMobile, activeBoardId, boards } =
+    useAppContext();
   return (
-    <header className="flex h-[6rem] items-center">
+    <header className="flex h-[6rem] select-none items-center ">
       <img
         src="/src/assets/logo-dark.svg"
         alt="logo"
@@ -12,15 +16,27 @@ function Header() {
         className="block border-b py-[1.4rem] pl-5 sm:hidden"
       />
       <div className="flex flex-grow items-center justify-between border-b p-[1.3rem]">
-        <div className="flex items-center gap-3">
+        <div className="flex cursor-pointer items-center gap-3 sm:cursor-auto">
           <h1 className="px-0 text-xl font-bold sm:px-6 sm:text-2xl">
-            Platform Launch
+            {boards.map((board) =>
+              board.id === activeBoardId ? board.name : null,
+            )}
           </h1>
-          <img
-            src="/src/assets/icon-chevron-down.svg"
-            alt="logo"
-            className="block sm:hidden"
-          />
+          {showSideNavMobile ? (
+            <img
+              src="/src/assets/icon-chevron-down.svg"
+              alt="logo"
+              className=" w-5 sm:hidden"
+              onClick={() => setShowSideNavMobile((e) => !e)}
+            />
+          ) : (
+            <img
+              src="/src/assets/icon-chevron-up.svg"
+              alt="logo"
+              className=" w-5 sm:hidden"
+              onClick={() => setShowSideNavMobile((e) => !e)}
+            />
+          )}
         </div>
         <div className="flex items-center gap-6">
           <button className="hidden rounded-full bg-main-purple px-6 py-3 font-bold text-white sm:block">

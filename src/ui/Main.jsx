@@ -1,13 +1,14 @@
 import { useState } from "react";
-import Column from "../components/board/Column";
 import SidNav from "../components/sidenav/SideNav";
+import Columns from "../components/columns/Columns.jsx";
 
 function Main() {
   const [hide, setHide] = useState(false);
+
   return (
-    <main className="flex">
+    <main className="relative flex select-none items-center justify-center sm:items-start ">
       <SidNav hide={hide} setHide={setHide} />
-      <Column hide={hide} />
+      <Columns hide={hide} />
     </main>
   );
 }

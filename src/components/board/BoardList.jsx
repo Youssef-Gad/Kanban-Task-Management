@@ -1,15 +1,20 @@
+import { useAppContext } from "../../context/AppContext";
 import Board from "./Board";
 
 function BoardList() {
+  const { boards } = useAppContext();
+
   return (
     <div className="mb-1 w-64">
       <div>
         <p className="py-5 pl-7 text-xs font-bold tracking-widest text-medium-grey">
-          ALL BOARDS (X)
+          ALL BOARDS ({boards.length})
         </p>
       </div>
 
-      <Board />
+      {boards.map((board) => (
+        <Board key={board.id} board={board} />
+      ))}
 
       <button
         className={`flex w-full items-center rounded-r-full py-3 pl-7 text-main-purple transition-all duration-300 hover:opacity-70`}

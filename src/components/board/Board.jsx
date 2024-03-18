@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useAppContext } from "../../context/AppContext";
 
-function Board() {
-  const [active, setActive] = useState(false);
+function Board({ board }) {
+  const { dispatch, activeBoardId } = useAppContext();
+  const active = activeBoardId === board.id;
+
+  function handleClick() {
+    dispatch({ type: "activeBoard", payload: board.id });
+  }
 
   return (
     <button
-      className={`flex w-full items-center rounded-r-full py-3 pl-7 ${active ? "bg-main-purple text-white" : "text-medium-grey"} transition-colors duration-300 hover:bg-main-purple-light hover:text-white`}
-      onClick={() => setActive((a) => !a)}
+      className={`mb-1 flex w-full items-center rounded-r-full py-3 pl-7 ${active ? "bg-main-purple text-white" : "text-medium-grey"} transition-colors duration-300 hover:bg-main-purple-light hover:text-white`}
+      onClick={handleClick}
     >
       <svg
         width="16"
@@ -19,7 +24,7 @@ function Board() {
           fill={`${active ? "#FFFFFF" : "#828FA3"}`}
         />
       </svg>
-      <p className="font-bold">Platform Lanuch</p>
+      <p className="font-bold">{board.name}</p>
     </button>
   );
 }
