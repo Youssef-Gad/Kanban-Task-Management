@@ -4,7 +4,7 @@ function Header() {
   const { setShowSideNavMobile, showSideNavMobile, activeBoardId, boards } =
     useAppContext();
   return (
-    <header className="flex h-[6rem] select-none items-center ">
+    <header className="sticky top-0 flex h-[6rem] select-none items-center bg-white">
       <img
         src="/src/assets/logo-dark.svg"
         alt="logo"

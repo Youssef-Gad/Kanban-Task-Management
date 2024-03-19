@@ -11,7 +11,7 @@ function Columns({ hide }) {
 
   return (
     <div
-      className={`flex min-w-[calc(100%-18rem)] justify-around bg-light-grey py-4  ${hide ? "translate-x-[-25%]" : ""} transition-transform duration-300`}
+      className={`${hide ? "left-0" : "left-[14rem]"} absolute flex h-full min-w-full flex-col items-center justify-around py-4 sm:flex-row sm:items-start`}
     >
       {activeBoard.columns.map((column) => (
         <Column column={column} key={column.id} />

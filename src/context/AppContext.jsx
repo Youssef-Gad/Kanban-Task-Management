@@ -55,7 +55,7 @@ function AppProvider({ children }) {
 function useAppContext() {
   const context = useContext(AppContext);
   if (context === undefined)
-    throw new Error("AppContext was outside of the PostProvider");
+    throw new Error("AppContext was outside of the AppProvider");
   return context;
 }
 
