@@ -16,6 +16,8 @@ function reducer(state, action) {
       return { ...state, boards: action.payload };
     case "activeBoard":
       return { ...state, activeBoardId: action.payload };
+    case "statusUpdate":
+      return { ...state, boards: action.payload };
     default:
       throw new Error("Action Unknown");
   }
@@ -27,6 +29,11 @@ function AppProvider({ children }) {
     initialState,
   );
   const [showSideNavMobile, setShowSideNavMobile] = useState(false);
+  const activeBoard = { columns: [] };
+
+  boards.map((board) =>
+    board.id === activeBoardId ? (activeBoard.columns = board.columns) : null,
+  );
 
   useEffect(function () {
     async function getData() {
@@ -42,7 +49,7 @@ function AppProvider({ children }) {
       value={{
         showSideNavMobile,
         boards,
-        activeBoardId,
+        activeBoard,
         setShowSideNavMobile,
         dispatch,
       }}

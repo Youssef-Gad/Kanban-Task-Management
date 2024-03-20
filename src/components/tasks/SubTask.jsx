@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function SubTask({ subtask }) {
+function SubTask({ subtask, setCompletedTasks, selectedTask }) {
   const [isChecked, setIsChecked] = useState(subtask.isCompleted);
+
+  useEffect(
+    function () {
+      subtask.isCompleted = isChecked;
+      setCompletedTasks(
+        selectedTask.subtasks.filter((subtask) => subtask.isCompleted),
+      );
+    },
+    [subtask, isChecked, selectedTask.subtasks, setCompletedTasks],
+  );
 
   return (
     <div className="flex gap-4 rounded-md bg-light-grey p-2">

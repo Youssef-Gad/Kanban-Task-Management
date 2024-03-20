@@ -2,12 +2,7 @@ import { useAppContext } from "../../context/AppContext";
 import Column from "./Column";
 
 function Columns({ hide }) {
-  const { boards, activeBoardId } = useAppContext();
-  const activeBoard = { columns: [] };
-
-  boards.map((board) =>
-    board.id === activeBoardId ? (activeBoard.columns = board.columns) : null,
-  );
+  const { activeBoard } = useAppContext();
 
   return (
     <div

@@ -5,7 +5,6 @@ import Task from "./Task";
 function Tasks({ tasks }) {
   const [selectedTask, setSelectedTask] = useState({});
   const [showTask, setShowTask] = useState(false);
-  const [countIsCompleted, setCountIsCompleted] = useState(0);
 
   function handleClick(task) {
     setShowTask((e) => !e);
@@ -17,10 +16,7 @@ function Tasks({ tasks }) {
       {showTask && (
         <>
           <Overlay onClick={setShowTask} />
-          <Task
-            selectedTask={selectedTask}
-            setCountIsCompleted={setCountIsCompleted}
-          />
+          <Task selectedTask={selectedTask} tasks={tasks} />
         </>
       )}
 
@@ -32,7 +28,8 @@ function Tasks({ tasks }) {
         >
           <p className="mb-2 text-start font-bold">{task.title}</p>
           <p className="text-start text-xs font-bold text-medium-grey">
-            {countIsCompleted} of {task.subtasks.length}
+            {task.subtasks.length}{" "}
+            {task.subtasks.length === 1 ? "Task" : "Tasks"}
           </p>
         </div>
       ))}
