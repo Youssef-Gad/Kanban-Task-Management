@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 
-function SubTask({ subtask, setCompletedTasks, selectedTask }) {
+function SubTask({ subtask, setSubTasksArr, task }) {
   const [isChecked, setIsChecked] = useState(subtask.isCompleted);
 
   useEffect(
     function () {
       subtask.isCompleted = isChecked;
-      setCompletedTasks(
-        selectedTask.subtasks.filter((subtask) => subtask.isCompleted),
-      );
+      setSubTasksArr(task.subtasks.filter((subtask) => subtask.isCompleted));
     },
-    [subtask, isChecked, selectedTask.subtasks, setCompletedTasks],
+    [subtask, isChecked, task.subtasks, setSubTasksArr],
   );
 
   return (

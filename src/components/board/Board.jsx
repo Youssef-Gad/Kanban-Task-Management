@@ -1,11 +1,11 @@
 import { useAppContext } from "../../context/AppContext";
 
 function Board({ board }) {
-  const { dispatch, activeBoardId } = useAppContext();
-  const active = activeBoardId === board.id;
+  const { dispatch, activeBoard } = useAppContext();
+  const active = activeBoard.id === board.id;
 
   function handleClick() {
-    dispatch({ type: "activeBoard", payload: board.id });
+    dispatch({ type: "updateActiveBoard", payload: board });
   }
 
   return (

@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { useAppContext } from "../context/AppContext";
+import DropBox from "./DropBox";
 
 function Header() {
+  const [showDropBox, setShowDropBox] = useState(false);
   const { setShowSideNavMobile, showSideNavMobile, activeBoardId, boards } =
     useAppContext();
+
   return (
     <header className="sticky top-0 flex h-[6rem] select-none items-center bg-white">
       <img
@@ -45,9 +49,14 @@ function Header() {
           <button className="block rounded-full bg-main-purple px-4 py-2 sm:hidden">
             <img src="/src/assets/icon-add-task-mobile.svg" alt="icon" />
           </button>
-          <button>
-            <img src="/src/assets/icon-vertical-ellipsis.svg" alt="icon" />
-          </button>
+
+          <img
+            className="cursor-pointer rounded-full p-2 transition-colors duration-300 hover:bg-light-grey"
+            src="/src/assets/icon-vertical-ellipsis.svg"
+            alt="icon"
+            onClick={() => setShowDropBox((e) => !e)}
+          />
+          {showDropBox && <DropBox type="header" />}
         </div>
       </div>
     </header>
