@@ -5,8 +5,10 @@ import { AppProvider } from "./context/AppContext";
 function App() {
   return (
     <AppProvider>
-      <Header />
-      <Main />
+      <div className="overflow-hidden">
+        <Header />
+        <Main />
+      </div>
     </AppProvider>
   );
 }

@@ -4,7 +4,7 @@ import Columns from "../components/columns/Columns.jsx";
 import ShowBtn from "../components/sidenav/ShowBtn.jsx";
 
 function Main() {
-  const [hide, setHide] = useState(true);
+  const [hide, setHide] = useState(false);
 
   return (
     <main className="select-none">

@@ -4,11 +4,11 @@ import DropBox from "./DropBox";
 
 function Header() {
   const [showDropBox, setShowDropBox] = useState(false);
-  const { setShowSideNavMobile, showSideNavMobile, activeBoardId, boards } =
+  const { setShowSideNavMobile, showSideNavMobile, activeBoard } =
     useAppContext();
 
   return (
-    <header className="sticky top-0 flex h-[6rem] select-none items-center bg-white">
+    <header className="fixed left-0 right-0 flex h-[6rem] select-none items-center bg-white">
       <img
         src="/src/assets/logo-dark.svg"
         alt="logo"
@@ -22,9 +22,7 @@ function Header() {
       <div className="flex flex-grow items-center justify-between border-b p-[1.3rem]">
         <div className="flex cursor-pointer items-center gap-3 sm:cursor-auto">
           <h1 className="px-0 text-xl font-bold sm:px-6 sm:text-2xl">
-            {boards.map((board) =>
-              board.id === activeBoardId ? board.name : null,
-            )}
+            {activeBoard.name}
           </h1>
           {showSideNavMobile ? (
             <img

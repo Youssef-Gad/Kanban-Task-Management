@@ -6,7 +6,7 @@ function Columns({ hide }) {
 
   return (
     <div
-      className={`${hide ? "left-0" : "left-[14rem]"} absolute flex h-full min-w-full flex-col items-center justify-around py-4 sm:flex-row sm:items-start`}
+      className={`${hide ? "ml-[5rem]" : "ml-[20rem]"} scrollbar-hide mt-24 flex h-full w-full flex-col items-center gap-24 overflow-scroll py-4 sm:flex-row sm:items-start`}
     >
       {activeBoard?.columns?.map((column) => (
         <Column column={column} key={column.id} />
