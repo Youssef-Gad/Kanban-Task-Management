@@ -54,7 +54,9 @@ function Header() {
             alt="icon"
             onClick={() => setShowDropBox((e) => !e)}
           />
-          {showDropBox && <DropBox type="header" />}
+          {showDropBox && (
+            <DropBox type="header" setShowDropBox={setShowDropBox} />
+          )}
         </div>
       </div>
     </header>

@@ -40,6 +40,16 @@ function reducer(state, action) {
         status: action.payload.newStatus,
       });
       return { ...state };
+    case "addNewBoard":
+      return { ...state, boards: [...state.boards, action.payload] };
+    case "deleteColumn":
+      const newCols = state.activeBoard.columns.filter(
+        (col) => col.id !== action.payload,
+      );
+      return {
+        ...state,
+        activeBoard: { ...state.activeBoard, columns: newCols },
+      };
     default:
       throw new Error("Action Unknown");
   }
@@ -48,6 +58,8 @@ function reducer(state, action) {
 function AppProvider({ children }) {
   const [{ boards, activeBoard }, dispatch] = useReducer(reducer, initialState);
   const [showSideNavMobile, setShowSideNavMobile] = useState(false);
+  const [showNewBoardModal, setNewBoardShowModal] = useState(false);
+  const [showEditBoard, setShowEditBoard] = useState(false);
 
   useEffect(function () {
     async function getData() {
@@ -64,6 +76,10 @@ function AppProvider({ children }) {
         showSideNavMobile,
         boards,
         activeBoard,
+        showNewBoardModal,
+        showEditBoard,
+        setShowEditBoard,
+        setNewBoardShowModal,
         setShowSideNavMobile,
         dispatch,
       }}

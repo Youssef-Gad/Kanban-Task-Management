@@ -3,17 +3,17 @@ import Overlay from "../../ui/Overlay";
 import TaskModal from "./TaskModal";
 
 function Task({ task }) {
-  const [showTask, setShowTask] = useState(false);
   const [subTasksArr, setSubTasksArr] = useState(task.subtasks);
+  const [showModal, setShowModal] = useState(false);
 
   let completedTasks = 0;
   subTasksArr.map((subTask) => (subTask.isCompleted ? completedTasks++ : null));
 
   return (
     <>
-      {showTask && (
+      {showModal && (
         <>
-          <Overlay onClick={setShowTask} />
+          <Overlay onClick={setShowModal} />
           <TaskModal
             task={task}
             subTasksArr={subTasksArr}
@@ -24,7 +24,7 @@ function Task({ task }) {
       <div
         key={task.id}
         className="mb-8 w-[18rem] cursor-pointer rounded-md bg-white p-5 shadow-md transition-colors duration-300 hover:text-main-purple"
-        onClick={() => setShowTask((e) => !e)}
+        onClick={() => setShowModal((e) => !e)}
       >
         <p className="mb-2 text-start font-bold">{task.title}</p>
         <p className="text-start text-xs font-bold text-medium-grey">
