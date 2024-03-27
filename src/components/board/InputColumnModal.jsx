@@ -3,10 +3,11 @@ import { useAppContext } from "../../context/AppContext";
 
 function InputColumnModal({ col }) {
   const [colName, setColName] = useState(col.name);
-  const { dispatch } = useAppContext();
+  const { dispatch, setShowEditBoard } = useAppContext();
 
-  function handleDeleteColumn() {
+  function handleClick() {
     dispatch({ type: "deleteColumn", payload: col.id });
+    setShowEditBoard(false);
   }
 
   return (
@@ -22,7 +23,7 @@ function InputColumnModal({ col }) {
         src="/src/assets/icon-cross.svg"
         alt="icon"
         className="cursor-pointer rounded-full bg-[#f5f5f5] p-4 transition-colors duration-300 hover:bg-[#e1e1e1]"
-        onClick={handleDeleteColumn}
+        onClick={handleClick}
       />
     </div>
   );

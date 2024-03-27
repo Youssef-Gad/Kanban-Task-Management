@@ -3,8 +3,14 @@ import { useAppContext } from "../../context/AppContext";
 import InputColumnModal from "./InputColumnModal";
 
 function EditBoardModal() {
-  const { activeBoard } = useAppContext();
+  const { activeBoard, dispatch, setShowEditBoard } = useAppContext();
   const [newBoardName, setNewBoardName] = useState(activeBoard.name);
+
+  function handleEditBoardName() {
+    if (newBoardName === activeBoard.name || !newBoardName) return;
+    dispatch({ type: "EditBoardName", payload: newBoardName });
+    setShowEditBoard(false);
+  }
 
   return (
     <div className="fixed right-[30%] top-[4%] z-50 min-h-[23rem] w-[30rem] rounded-xl bg-white p-8 text-start">
@@ -17,17 +23,19 @@ function EditBoardModal() {
           value={newBoardName}
           onChange={(e) => setNewBoardName(e.target.value)}
         />
+        <button
+          className="mt-5 w-full rounded-full bg-main-purple p-2 text-sm font-bold text-white transition-colors duration-300 hover:bg-main-purple-light"
+          onClick={handleEditBoardName}
+        >
+          Change Board Name
+        </button>
       </div>
-      <label className="text-sm font-bold text-medium-grey">Columns</label>
+      <label className="text-sm font-bold text-medium-grey">
+        Columns ({activeBoard.columns.length})
+      </label>
       {activeBoard.columns.map((col) => (
         <InputColumnModal col={col} key={col.id} />
       ))}
-      <button
-        className="mt-5 w-full rounded-full bg-main-purple p-2 text-sm font-bold text-white transition-colors duration-300 hover:bg-main-purple-light"
-        // onClick={handleClick}
-      >
-        Save Changes
-      </button>
     </div>
   );
 }

@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useAppContext } from "../../context/AppContext";
 
 function Board({ board }) {
   const { dispatch, activeBoard } = useAppContext();
   const active = activeBoard.id === board.id;
+  // const [active, setActive] = useState(true);
 
   function handleClick() {
     dispatch({ type: "updateActiveBoard", payload: board });

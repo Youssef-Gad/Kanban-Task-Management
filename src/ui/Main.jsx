@@ -6,6 +6,7 @@ import Overlay from "./Overlay.jsx";
 import BoardModal from "../components/board/BoardModal.jsx";
 import { useAppContext } from "../context/AppContext.jsx";
 import EditBoardModal from "../components/board/EditBoardModal.jsx";
+import DeleteModal from "./DeleteModal.jsx";
 
 function Main() {
   const [hide, setHide] = useState(false);
@@ -14,6 +15,8 @@ function Main() {
     showNewBoardModal,
     showEditBoard,
     setShowEditBoard,
+    setShowDeleteBoard,
+    showDeleteBoard,
   } = useAppContext();
 
   return (
@@ -28,6 +31,12 @@ function Main() {
         <>
           <Overlay onClick={setShowEditBoard} />
           <EditBoardModal />
+        </>
+      )}
+      {showDeleteBoard && (
+        <>
+          <Overlay onClick={setShowDeleteBoard} />
+          <DeleteModal />
         </>
       )}
       <SidNav hide={hide} setHide={setHide} />

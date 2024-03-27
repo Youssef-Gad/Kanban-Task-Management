@@ -41,7 +41,11 @@ function reducer(state, action) {
       });
       return { ...state };
     case "addNewBoard":
-      return { ...state, boards: [...state.boards, action.payload] };
+      return {
+        ...state,
+        boards: [...state.boards, action.payload],
+        activeBoard: action.payload,
+      };
     case "deleteColumn":
       const newCols = state.activeBoard.columns.filter(
         (col) => col.id !== action.payload,
@@ -50,6 +54,28 @@ function reducer(state, action) {
         ...state,
         activeBoard: { ...state.activeBoard, columns: newCols },
       };
+    case "addNewColumn":
+      const newColumn = [...state.activeBoard.columns, action.payload];
+      return {
+        ...state,
+        activeBoard: { ...state.activeBoard, columns: newColumn },
+      };
+    case "EditBoardName":
+      const newBoards = state.boards.map((board) =>
+        board.id === state.activeBoard.id
+          ? { ...board, name: action.payload }
+          : board,
+      );
+      return {
+        ...state,
+        boards: newBoards,
+        activeBoard: { ...state.activeBoard, name: action.payload },
+      };
+    case "deleteBoard":
+      const boards = state.boards.filter(
+        (board) => board.id !== state.activeBoard.id,
+      );
+      return { ...state, boards: boards, activeBoard: {} };
     default:
       throw new Error("Action Unknown");
   }
@@ -60,6 +86,7 @@ function AppProvider({ children }) {
   const [showSideNavMobile, setShowSideNavMobile] = useState(false);
   const [showNewBoardModal, setNewBoardShowModal] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
+  const [showDeleteBoard, setShowDeleteBoard] = useState(false);
 
   useEffect(function () {
     async function getData() {
@@ -78,6 +105,8 @@ function AppProvider({ children }) {
         activeBoard,
         showNewBoardModal,
         showEditBoard,
+        showDeleteBoard,
+        setShowDeleteBoard,
         setShowEditBoard,
         setNewBoardShowModal,
         setShowSideNavMobile,
