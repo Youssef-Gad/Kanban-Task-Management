@@ -9,7 +9,11 @@ import shortid from "shortid";
 
 const AppContext = createContext();
 
-const initialState = { boards: [], activeBoard: {} };
+const initialState = {
+  boards: [],
+  activeBoard: {},
+  activeTask: {},
+};
 
 function reducer(state, action) {
   switch (action.type) {
@@ -19,6 +23,8 @@ function reducer(state, action) {
         boards: action.payload.boards,
         activeBoard: action.payload.boards[0],
       };
+    case "activeTask":
+      return { ...state, activeTask: action.payload };
     case "updateActiveBoard":
       return { ...state, activeBoard: action.payload };
     case "statusUpdate":
@@ -76,17 +82,46 @@ function reducer(state, action) {
         (board) => board.id !== state.activeBoard.id,
       );
       return { ...state, boards: boards, activeBoard: {} };
+    case "EditColumnName":
+      const columns = state.activeBoard.columns.map((col) =>
+        col.id === action.payload.id
+          ? { ...col, name: action.payload.newName }
+          : col,
+      );
+      return {
+        ...state,
+        activeBoard: { ...state.activeBoard, columns: columns },
+      };
+    case "addNewTask":
+      const newColumns = state.activeBoard.columns.map((col) =>
+        col.name === action.payload.status
+          ? { ...col, tasks: [...col.tasks, action.payload.newTask] }
+          : col,
+      );
+      return {
+        ...state,
+        activeBoard: { ...state.activeBoard, columns: newColumns },
+      };
+    // case "EditTask":
+    //   const newColumns2=state.activeBoard.columns.map((col) =>col.tasks)
+    //   return { ...state, activeTask: action.payload };
     default:
       throw new Error("Action Unknown");
   }
 }
 
 function AppProvider({ children }) {
-  const [{ boards, activeBoard }, dispatch] = useReducer(reducer, initialState);
+  const [{ boards, activeBoard, activeTask }, dispatch] = useReducer(
+    reducer,
+    initialState,
+  );
   const [showSideNavMobile, setShowSideNavMobile] = useState(false);
   const [showNewBoardModal, setNewBoardShowModal] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
   const [showDeleteBoard, setShowDeleteBoard] = useState(false);
+  const [showNewColumn, setShowNewColumn] = useState(false);
+  const [showNewTask, setShowNewTask] = useState(false);
+  const [showEditTask, setShowEditTask] = useState(false);
 
   useEffect(function () {
     async function getData() {
@@ -106,6 +141,13 @@ function AppProvider({ children }) {
         showNewBoardModal,
         showEditBoard,
         showDeleteBoard,
+        showNewColumn,
+        showNewTask,
+        showEditTask,
+        activeTask,
+        setShowEditTask,
+        setShowNewTask,
+        setShowNewColumn,
         setShowDeleteBoard,
         setShowEditBoard,
         setNewBoardShowModal,

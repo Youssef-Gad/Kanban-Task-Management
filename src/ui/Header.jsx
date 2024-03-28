@@ -4,8 +4,12 @@ import DropBox from "./DropBox";
 
 function Header() {
   const [showDropBox, setShowDropBox] = useState(false);
-  const { setShowSideNavMobile, showSideNavMobile, activeBoard } =
-    useAppContext();
+  const {
+    setShowSideNavMobile,
+    showSideNavMobile,
+    activeBoard,
+    setShowNewTask,
+  } = useAppContext();
 
   return (
     <header className="fixed left-0 right-0 flex h-[6rem] select-none items-center bg-white">
@@ -41,7 +45,10 @@ function Header() {
           )}
         </div>
         <div className="flex items-center gap-6">
-          <button className="hidden rounded-full bg-main-purple px-6 py-3 font-bold text-white sm:block">
+          <button
+            className="hidden rounded-full bg-main-purple px-6 py-3 font-bold text-white sm:block"
+            onClick={() => setShowNewTask(true)}
+          >
             + Add New Task
           </button>
           <button className="block rounded-full bg-main-purple px-4 py-2 sm:hidden">

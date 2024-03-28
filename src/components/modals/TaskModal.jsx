@@ -1,12 +1,12 @@
 import { useState } from "react";
-import SubTask from "./SubTask";
+import SubTask from "../tasks/SubTask";
 import { useAppContext } from "../../context/AppContext";
 import DropBox from "../../ui/DropBox";
 
-function TaskModal({ task, subTasksArr, setSubTasksArr }) {
+function TaskModal({ subTasksArr, setSubTasksArr, setShowModal }) {
+  const { activeBoard, dispatch, activeTask: task } = useAppContext();
   const [currentStauts, setCurrentStatus] = useState(task.status);
   const [showDropBox, setShowDropBox] = useState(false);
-  const { activeBoard, dispatch } = useAppContext();
 
   function handleSelection(e) {
     setCurrentStatus(e.target.value);
@@ -31,7 +31,7 @@ function TaskModal({ task, subTasksArr, setSubTasksArr }) {
           alt="icon"
           onClick={() => setShowDropBox((e) => !e)}
         />
-        {showDropBox && <DropBox type="task" />}
+        {showDropBox && <DropBox type="task" setShowModal={setShowModal} />}
       </div>
       <p className="mb-5 text-sm font-bold text-medium-grey">
         {task.description === "" ? "No Description" : task.description}

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Overlay from "../../ui/Overlay";
-import TaskModal from "./TaskModal";
+import TaskModal from "../modals/TaskModal";
+import { useAppContext } from "../../context/AppContext";
 
 function Task({ task }) {
+  const { dispatch } = useAppContext();
   const [subTasksArr, setSubTasksArr] = useState(task.subtasks);
   const [showModal, setShowModal] = useState(false);
 
@@ -15,16 +17,20 @@ function Task({ task }) {
         <>
           <Overlay onClick={setShowModal} />
           <TaskModal
-            task={task}
             subTasksArr={subTasksArr}
             setSubTasksArr={setSubTasksArr}
+            setShowModal={setShowModal}
           />
         </>
       )}
+
       <div
         key={task.id}
         className="mb-8 w-[18rem] cursor-pointer rounded-md bg-white p-5 shadow-md transition-colors duration-300 hover:text-main-purple"
-        onClick={() => setShowModal((e) => !e)}
+        onClick={() => {
+          setShowModal((e) => !e);
+          dispatch({ type: "activeTask", payload: task });
+        }}
       >
         <p className="mb-2 text-start font-bold">{task.title}</p>
         <p className="text-start text-xs font-bold text-medium-grey">
