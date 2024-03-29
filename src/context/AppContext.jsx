@@ -102,9 +102,46 @@ function reducer(state, action) {
         ...state,
         activeBoard: { ...state.activeBoard, columns: newColumns },
       };
-    // case "EditTask":
-    //   const newColumns2=state.activeBoard.columns.map((col) =>col.tasks)
-    //   return { ...state, activeTask: action.payload };
+    case "EditTask":
+      const newEditColumns = state.activeBoard.columns.map((col) =>
+        col.name === state.activeTask.status
+          ? {
+              ...col,
+              tasks: col.tasks.map((task) =>
+                task.id === state.activeTask.id
+                  ? {
+                      ...state.activeTask,
+                      title: action.payload.title,
+                      description: action.payload.description,
+                      subtasks: [
+                        ...state.activeTask.subtasks,
+                        action.payload.subtasks,
+                      ],
+                    }
+                  : task,
+              ),
+            }
+          : col,
+      );
+      return {
+        ...state,
+        activeBoard: { ...state.activeBoard, columns: newEditColumns },
+      };
+    case "deleteTask":
+      const newEditColumns2 = state.activeBoard.columns.map((col) =>
+        col.name === state.activeTask.status
+          ? {
+              ...col,
+              tasks: col.tasks.filter(
+                (task) => task.id !== state.activeTask.id,
+              ),
+            }
+          : col,
+      );
+      return {
+        ...state,
+        activeBoard: { ...state.activeBoard, columns: newEditColumns2 },
+      };
     default:
       throw new Error("Action Unknown");
   }

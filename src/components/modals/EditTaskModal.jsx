@@ -2,29 +2,23 @@ import { useState } from "react";
 import { useAppContext } from "../../context/AppContext";
 
 function EditTaskModal() {
-  const { activeBoard, dispatch, setShowEditTask, activeTask } =
-    useAppContext();
+  const { dispatch, setShowEditTask, activeTask } = useAppContext();
   const [newTaskName, setNewTaskName] = useState(activeTask.title);
   const [newTaskDescription, setNewTaskDescription] = useState(
     activeTask.description,
   );
   const [newSubtakName, setNewSubtakName] = useState("");
-  const [newTaskStauts, setNewTaskStauts] = useState(activeTask.status);
-  const [showAddSubtask, setShowAddSubtask] = useState(false);
 
   function handleEditTask() {
-    // const task = {
-    //   ...activeTask,
-    //   title: newTaskName,
-    //   description: newTaskDescription,
-    //   status: newTaskStauts,
-    //   subtasks: [
-    //     ...activeTask.subtasks,
-    //     { title: newSubtakName, isCompleted: false },
-    //   ],
-    // };
-
-    // dispatch({ type: "EditTask", payload: task });
+    if (!newSubtakName) return;
+    dispatch({
+      type: "EditTask",
+      payload: {
+        title: newTaskName,
+        description: newTaskDescription,
+        subtasks: { title: newSubtakName, isCompleted: false },
+      },
+    });
     setShowEditTask(false);
   }
 
@@ -50,41 +44,19 @@ function EditTaskModal() {
         ></textarea>
 
         <label className="text-sm font-bold text-medium-grey">Subtask</label>
-        {showAddSubtask && (
-          <input
-            className="focus:shadow-outline my-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none"
-            type="text"
-            placeholder="Enter New Subtak Name"
-            value={newSubtakName}
-            onChange={(e) => setNewSubtakName(e.target.value)}
-          />
-        )}
-        <button
-          className="mb-4 mt-1 w-full rounded-full bg-main-purple p-2 text-sm font-bold text-white transition-colors duration-300 hover:bg-main-purple-light"
-          onClick={() => setShowAddSubtask(true)}
-        >
-          Add New Subtask
-        </button>
+        <input
+          className="focus:shadow-outline my-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none"
+          type="text"
+          placeholder="Enter New Subtak Name"
+          value={newSubtakName}
+          onChange={(e) => setNewSubtakName(e.target.value)}
+        />
 
-        <label className="text-sm font-bold text-medium-grey">
-          Current Status
-        </label>
-        <select
-          className="w-full rounded-md border-2 border-[#828fa366] p-2 text-sm font-semibold focus:border-main-purple"
-          value={newTaskStauts}
-          onChange={(e) => setNewTaskStauts(e.target.value)}
-        >
-          {activeBoard.columns.map((col) => (
-            <option key={col.name} value={col.name} className="font-semibold">
-              {col.name}
-            </option>
-          ))}
-        </select>
         <button
           className="mt-5 w-full rounded-full bg-main-purple p-2 text-sm font-bold text-white transition-colors duration-300 hover:bg-main-purple-light"
           onClick={handleEditTask}
         >
-          Create Task
+          Save Changes
         </button>
       </div>
     </div>
