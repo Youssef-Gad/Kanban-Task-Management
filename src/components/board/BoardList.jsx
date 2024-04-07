@@ -2,7 +2,8 @@ import { useAppContext } from "../../context/AppContext";
 import Board from "./Board";
 
 function BoardList() {
-  const { boards, setNewBoardShowModal } = useAppContext();
+  const { boards, setNewBoardShowModal, setShowSideNavMobile } =
+    useAppContext();
 
   return (
     <div className="mb-1 w-64">
@@ -18,7 +19,10 @@ function BoardList() {
 
       <button
         className={`flex w-full items-center rounded-r-full py-3 pl-7 text-main-purple transition-all duration-300 hover:opacity-70`}
-        onClick={() => setNewBoardShowModal((e) => !e)}
+        onClick={() => {
+          setNewBoardShowModal((e) => !e);
+          setShowSideNavMobile(false);
+        }}
       >
         <svg
           width="16"

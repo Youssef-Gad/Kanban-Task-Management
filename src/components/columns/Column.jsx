@@ -3,7 +3,7 @@ import ColumnHeader from "./ColumnHeader";
 
 function Column({ column }) {
   return (
-    <div className="w-[14rem] text-center">
+    <div className="w-[10rem] text-center sm:w-[14rem]">
       <ColumnHeader column={column} />
       <Tasks tasks={column.tasks} />
     </div>

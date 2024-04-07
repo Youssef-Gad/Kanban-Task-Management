@@ -12,7 +12,7 @@ function SideNav({ hide, setHide }) {
       {showSideNavMobile && <Overlay onClick={setShowSideNavMobile} />}
 
       <div
-        className={`${showSideNavMobile ? "fixed left-[10rem] top-[26vh] z-30 w-[17rem] rounded-md bg-white" : "hidden"} bg-white sm:fixed sm:bottom-0 sm:left-0 sm:flex sm:min-h-[83%] sm:w-[18.2rem] sm:flex-col sm:justify-between sm:border-r sm:${hide ? "hidden" : ""} scrollbar-hide overflow-y-scroll rounded-md`}
+        className={`${showSideNavMobile ? "fixed left-[3rem] top-[26vh] z-40 w-[17rem] bg-white" : "hidden"} bg-white sm:fixed sm:bottom-0 sm:left-0 sm:flex sm:min-h-[calc(100%-96px)] sm:w-[18.2rem] sm:flex-col sm:justify-between sm:border-r dark:bg-dark-grey sm:dark:border-r-lines-dark sm:${hide ? "hidden" : ""} scrollbar-hide overflow-y-scroll`}
       >
         <BoardList />
         <div>

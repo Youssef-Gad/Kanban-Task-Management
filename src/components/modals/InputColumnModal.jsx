@@ -20,9 +20,9 @@ function InputColumnModal({ col }) {
   }
 
   return (
-    <div className="flex items-center gap-7">
+    <div className="mb-5 flex items-center gap-1 sm:mb-0 sm:gap-7">
       <input
-        className="focus:shadow-outline mb-3 mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none"
+        className="focus:shadow-outline mb-3 mt-1 w-full appearance-none rounded border px-3 py-2 font-semibold text-medium-grey shadow focus:outline-none dark:border dark:border-lines-dark dark:bg-dark-grey"
         type="text"
         placeholder="Enter New Name"
         value={colName}
@@ -35,13 +35,13 @@ function InputColumnModal({ col }) {
         onClick={handleDeleteColumn}
       /> */}
       <button
-        className="rounded-full bg-main-purple px-6 py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-main-purple-light"
+        className="rounded-full bg-main-purple px-3 py-2 text-sm font-bold text-white transition-colors duration-300 hover:bg-main-purple-light sm:px-8 sm:py-3"
         onClick={handleEditColumnName}
       >
         Save
       </button>
       <button
-        className="rounded-full bg-red px-6 py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-red-light"
+        className="rounded-full bg-red px-3 py-2 text-sm font-bold text-white transition-colors duration-300 hover:bg-red-light sm:px-8 sm:py-3"
         onClick={handleDeleteColumn}
       >
         Delete

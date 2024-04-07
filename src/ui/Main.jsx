@@ -29,7 +29,7 @@ function Main() {
   } = useAppContext();
 
   return (
-    <main className="select-none">
+    <main className="select-none dark:bg-dark-grey dark:text-white">
       {showNewBoardModal && (
         <>
           <Overlay onClick={setNewBoardShowModal} />

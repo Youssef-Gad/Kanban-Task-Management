@@ -12,14 +12,16 @@ function SubTask({ subtask, setSubTasksArr, task }) {
   );
 
   return (
-    <div className="flex gap-4 rounded-md bg-light-grey p-2">
+    <div className="flex items-center gap-4 rounded-md bg-light-grey p-2 dark:bg-very-dark-grey">
       <input
         type="checkbox"
         className="accent-main-purple"
         checked={isChecked}
         onChange={() => setIsChecked((e) => !e)}
       />
-      <p className={`${isChecked ? "line-through" : ""} text-sm font-semibold`}>
+      <p
+        className={`${isChecked ? "line-through" : ""} text-xs font-bold sm:text-sm`}
+      >
         {subtask.title}
       </p>
     </div>

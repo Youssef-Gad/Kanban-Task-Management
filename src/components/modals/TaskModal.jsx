@@ -22,11 +22,11 @@ function TaskModal({ subTasksArr, setSubTasksArr, setShowModal }) {
   }
 
   return (
-    <div className="fixed right-[30%] top-[4%] z-40 min-h-[23rem] w-[30rem] rounded-xl bg-white p-8 text-start">
+    <div className="fixed right-7 top-20 z-40 w-[20rem] rounded-xl bg-white p-8 text-start sm:right-[30%] sm:top-[4%] sm:min-h-[23rem] sm:w-[30rem] dark:bg-dark-grey">
       <div className="relative mb-3 flex items-center justify-between">
         <p className="text-xl font-bold">{task.title}</p>
         <img
-          className="cursor-pointer rounded-full p-2 transition-colors duration-300 hover:bg-light-grey"
+          className="cursor-pointer rounded-full p-2 transition-colors duration-300 hover:bg-light-grey dark:hover:bg-very-dark-grey"
           src="/src/assets/icon-vertical-ellipsis.svg"
           alt="icon"
           onClick={() => setShowDropBox((e) => !e)}
@@ -40,7 +40,7 @@ function TaskModal({ subTasksArr, setSubTasksArr, setShowModal }) {
         <p className="mb-5 text-sm font-bold text-medium-grey">
           Subtasks ({subTasksArr.length} of {task.subtasks.length})
         </p>
-        <div className="mb-2 flex flex-col gap-3">
+        <div className="mb-2 grid grid-cols-2 gap-3">
           {task.subtasks.map((subtask) => (
             <SubTask
               subtask={subtask}
@@ -54,7 +54,7 @@ function TaskModal({ subTasksArr, setSubTasksArr, setShowModal }) {
           Current status
         </p>
         <select
-          className="w-full rounded-md border-2 border-[#828fa366] p-2 text-sm font-semibold focus:border-main-purple"
+          className="w-full rounded-md border-2 border-[#828fa366] p-2 text-sm font-semibold focus:border-main-purple dark:bg-dark-grey"
           value={currentStauts}
           onChange={(e) => handleSelection(e)}
         >

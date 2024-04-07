@@ -26,7 +26,7 @@ function Task({ task }) {
 
       <div
         key={task.id}
-        className="mb-8 w-[18rem] cursor-pointer rounded-md bg-white p-5 shadow-md transition-colors duration-300 hover:text-main-purple"
+        className="mb-8 w-[14rem] cursor-pointer rounded-md bg-white p-5 shadow-md transition-colors duration-300 hover:text-main-purple sm:w-[18rem] dark:bg-very-dark-grey"
         onClick={() => {
           setShowModal((e) => !e);
           dispatch({ type: "activeTask", payload: task });

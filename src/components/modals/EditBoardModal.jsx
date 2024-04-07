@@ -13,12 +13,12 @@ function EditBoardModal() {
   }
 
   return (
-    <div className="fixed right-[30%] top-[4%] z-50 min-h-[23rem] w-[30rem] rounded-xl bg-white p-8 text-start">
+    <div className="fixed right-7 top-20 z-40 w-[20rem] rounded-xl bg-white p-8 text-start sm:right-[30%] sm:top-[4%] sm:min-h-[23rem] sm:w-[30rem] dark:bg-dark-grey">
       <p className="mb-5 text-xl font-bold">Edit Board</p>
       <div className="mb-5">
         <label className="text-sm font-bold text-medium-grey">Board Name</label>
         <input
-          className="focus:shadow-outline mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none"
+          className="focus:shadow-outline mt-1 w-full appearance-none rounded border px-3 py-2 font-semibold text-medium-grey shadow focus:outline-none dark:border dark:border-lines-dark dark:bg-dark-grey"
           type="text"
           value={newBoardName}
           onChange={(e) => setNewBoardName(e.target.value)}

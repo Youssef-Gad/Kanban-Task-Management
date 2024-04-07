@@ -20,12 +20,12 @@ function BoardModal({ setShowModal }) {
   }
 
   return (
-    <div className="fixed right-[30%] top-[4%] z-40 min-h-[23rem] w-[30rem] rounded-xl bg-white p-8 text-start">
+    <div className="fixed right-7 top-40 z-40 w-[20rem] rounded-xl bg-white p-8 text-start sm:right-[30%] sm:top-[4%] sm:min-h-[23rem] sm:w-[30rem] dark:bg-dark-grey">
       <p className="mb-5 text-xl font-bold">Add New Board</p>
       <div className="mb-5">
         <label className="text-sm font-bold text-medium-grey">Name</label>
         <input
-          className="focus:shadow-outline mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none"
+          className="focus:shadow-outline mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none dark:border dark:border-lines-dark dark:bg-dark-grey"
           type="text"
           placeholder="Enter New Board Name"
           onChange={(e) => setBoardName(e.target.value)}
@@ -34,7 +34,7 @@ function BoardModal({ setShowModal }) {
       <div>
         <label className="text-sm font-bold text-medium-grey">Columns</label>
         <input
-          className="focus:shadow-outline mb-3 mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none"
+          className="focus:shadow-outline mb-3 mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none dark:border dark:border-lines-dark dark:bg-dark-grey"
           type="text"
           placeholder="Enter New Column Name"
           onChange={(e) => setColName(e.target.value)}

@@ -159,6 +159,7 @@ function AppProvider({ children }) {
   const [showNewColumn, setShowNewColumn] = useState(false);
   const [showNewTask, setShowNewTask] = useState(false);
   const [showEditTask, setShowEditTask] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(function () {
     async function getData() {
@@ -168,6 +169,14 @@ function AppProvider({ children }) {
     }
     getData();
   }, []);
+
+  useEffect(
+    function () {
+      if (darkMode) document.body.classList.add("dark");
+      else document.body.classList.remove("dark");
+    },
+    [darkMode],
+  );
 
   return (
     <AppContext.Provider
@@ -182,6 +191,8 @@ function AppProvider({ children }) {
         showNewTask,
         showEditTask,
         activeTask,
+        darkMode,
+        setDarkMode,
         setShowEditTask,
         setShowNewTask,
         setShowNewColumn,

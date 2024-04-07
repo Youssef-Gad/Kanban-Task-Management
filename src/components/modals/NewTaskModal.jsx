@@ -26,12 +26,12 @@ function NewTaskModal() {
   }
 
   return (
-    <div className="fixed right-[30%] top-[2%] z-50 min-h-[23rem] w-[30rem] rounded-xl bg-white p-8 text-start">
+    <div className="fixed right-7 top-20 z-40 w-[20rem] rounded-xl bg-white p-8 text-start sm:right-[30%] sm:top-[2%] sm:min-h-[23rem] sm:w-[30rem] dark:bg-dark-grey">
       <p className="mb-5 text-xl font-bold">Add New Task</p>
       <div className="mb-5">
         <label className="text-sm font-bold text-medium-grey">Task Name</label>
         <input
-          className="focus:shadow-outline mb-4 mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none"
+          className="focus:shadow-outline mb-4 mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none dark:border dark:border-lines-dark dark:bg-dark-grey"
           type="text"
           placeholder="Enter Task Name"
           value={taskName}
@@ -42,7 +42,7 @@ function NewTaskModal() {
           Description
         </label>
         <textarea
-          className="mb-4 w-full border  p-2 font-semibold text-medium-grey outline-none"
+          className="mb-4 w-full border p-2 font-semibold text-medium-grey outline-none dark:border dark:border-lines-dark dark:bg-dark-grey"
           placeholder="Enter Description"
           value={taskDescription}
           onChange={(e) => setTaskDescription(e.target.value)}
@@ -50,7 +50,7 @@ function NewTaskModal() {
 
         <label className="text-sm font-bold text-medium-grey">Subtask</label>
         <input
-          className="focus:shadow-outline mb-4 mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none"
+          className="focus:shadow-outline mb-4 mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none dark:border dark:border-lines-dark dark:bg-dark-grey"
           type="text"
           placeholder="Enter Subtak Name"
           value={subtakName}
@@ -61,7 +61,7 @@ function NewTaskModal() {
           Current Status
         </label>
         <select
-          className="w-full rounded-md border-2 border-[#828fa366] p-2 text-sm font-semibold focus:border-main-purple"
+          className="w-full rounded-md border-2 border-[#828fa366] p-2 text-sm font-semibold focus:border-main-purple dark:border dark:border-lines-dark dark:bg-dark-grey"
           value={taskStauts}
           onChange={(e) => setTaskStauts(e.target.value)}
         >

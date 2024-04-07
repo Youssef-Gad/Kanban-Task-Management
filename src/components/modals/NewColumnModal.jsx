@@ -16,10 +16,10 @@ function NewColumnModal() {
     setShowNewColumn(false);
   }
   return (
-    <div className="fixed right-[30%] top-[20%] z-50 min-h-[13rem] w-[30rem] rounded-xl bg-white p-8 text-start">
+    <div className="fixed right-7 top-40 z-40 w-[20rem] rounded-xl bg-white p-8 text-start sm:right-[30%] sm:top-[20%] sm:min-h-[13rem] sm:w-[30rem] dark:bg-dark-grey">
       <label className="text-sm font-bold text-medium-grey">Column Name</label>
       <input
-        className="focus:shadow-outline mt-1 w-full appearance-none rounded border px-3  py-2 font-semibold text-medium-grey shadow focus:outline-none"
+        className="focus:shadow-outline mt-1 w-full appearance-none rounded border px-3 py-2 font-semibold text-medium-grey  shadow focus:outline-none dark:border dark:border-lines-dark dark:bg-dark-grey"
         type="text"
         value={newColName}
         placeholder="Enter Column Name"
