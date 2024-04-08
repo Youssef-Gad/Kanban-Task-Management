@@ -57,7 +57,7 @@ function Header() {
       )}
       <svg
         width="60"
-        height="72"
+        height="68"
         xmlns="http://www.w3.org/2000/svg"
         className="block border-b pl-[2rem] pt-[1.4rem] dark:border-b-lines-dark dark:border-r-lines-dark sm:hidden"
       >
