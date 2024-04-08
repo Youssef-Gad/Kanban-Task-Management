@@ -105,7 +105,11 @@ function Header() {
         <div className="flex items-center gap-3">
           <button
             className="hidden rounded-full bg-main-purple px-6 py-3 font-bold text-white sm:block"
-            onClick={() => setShowNewTask(true)}
+            onClick={() =>
+              Object.keys(activeBoard).length === 0
+                ? null
+                : setShowNewTask(true)
+            }
           >
             + Add New Task
           </button>
@@ -123,7 +127,11 @@ function Header() {
 
           <div
             className="flex h-8 w-4 cursor-pointer items-center justify-center rounded-full transition-colors duration-300 hover:bg-light-grey dark:hover:bg-very-dark-grey"
-            onClick={() => setShowDropBox((e) => !e)}
+            onClick={() =>
+              Object.keys(activeBoard).length === 0
+                ? null
+                : setShowDropBox((e) => !e)
+            }
           >
             <svg width="5" height="20" xmlns="http://www.w3.org/2000/svg">
               <g fill="#828FA3" fillRule="evenodd">

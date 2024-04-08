@@ -6,14 +6,14 @@ function Columns({ hide }) {
 
   return (
     <div
-      className={`${hide ? "sm:pl-[4rem]" : "pl-[3rem] sm:pl-[20rem]"} scrollbar-hide mt-24 flex h-[100vh] w-full items-start gap-24 overflow-scroll py-4 sm:h-full sm:w-[120%] dark:bg-dark-grey`}
+      className={`${hide ? "sm:pl-[4rem]" : "pl-[3rem] sm:pl-[20rem]"} scrollbar-hide mt-24 flex h-[100vh] w-full items-start gap-24 overflow-scroll py-4 dark:bg-dark-grey sm:h-full sm:w-[120%]`}
     >
       {activeBoard?.columns?.map((column) => (
         <Column column={column} key={column.id} />
       ))}
       {!Object.keys(activeBoard).length ? (
         <p className="h-[85.7vh] text-xl font-bold text-main-purple sm:ml-[20rem] sm:mt-[10rem] sm:h-[47.6rem]">
-          😉Select a Board or Create New One
+          Select a Board or Create New One 😉
         </p>
       ) : (
         activeBoard.columns.length < 4 && (
