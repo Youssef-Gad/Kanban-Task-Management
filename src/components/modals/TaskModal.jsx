@@ -22,15 +22,21 @@ function TaskModal({ subTasksArr, setSubTasksArr, setShowModal }) {
   }
 
   return (
-    <div className="fixed right-7 top-20 z-40 w-[20rem] rounded-xl bg-white p-8 text-start sm:right-[30%] sm:top-[4%] sm:min-h-[23rem] sm:w-[30rem] dark:bg-dark-grey">
+    <div className="fixed right-7 top-20 z-40 w-[20rem] rounded-xl bg-white p-8 text-start dark:bg-dark-grey sm:right-[30%] sm:top-[4%] sm:min-h-[23rem] sm:w-[30rem]">
       <div className="relative mb-3 flex items-center justify-between">
         <p className="text-xl font-bold">{task.title}</p>
-        <img
-          className="cursor-pointer rounded-full p-2 transition-colors duration-300 hover:bg-light-grey dark:hover:bg-very-dark-grey"
-          src="/src/assets/icon-vertical-ellipsis.svg"
-          alt="icon"
+        <div
+          className="flex h-8 w-4 cursor-pointer items-center justify-center rounded-full transition-colors duration-300 hover:bg-light-grey dark:hover:bg-very-dark-grey"
           onClick={() => setShowDropBox((e) => !e)}
-        />
+        >
+          <svg width="5" height="20" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#828FA3" fillRule="evenodd">
+              <circle cx="2.308" cy="2.308" r="2.308" />
+              <circle cx="2.308" cy="10" r="2.308" />
+              <circle cx="2.308" cy="17.692" r="2.308" />
+            </g>
+          </svg>
+        </div>
         {showDropBox && <DropBox type="task" setShowModal={setShowModal} />}
       </div>
       <p className="mb-5 text-sm font-bold text-medium-grey">
