@@ -115,7 +115,11 @@ function Header() {
           </button>
           <button
             className="block rounded-full bg-main-purple px-4 py-2 sm:hidden"
-            onClick={() => setShowNewTask(true)}
+            onClick={() =>
+              Object.keys(activeBoard).length === 0
+                ? null
+                : setShowNewTask(true)
+            }
           >
             <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
               <path
