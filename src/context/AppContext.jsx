@@ -6,23 +6,25 @@ import {
   useState,
 } from "react";
 import shortid from "shortid";
+import { initialBoards } from "../../data/data";
 
 const AppContext = createContext();
 
 const initialState = {
-  boards: [],
-  activeBoard: {},
+  boards: JSON.parse(localStorage.getItem("boards")) || initialBoards,
+  activeBoard:
+    JSON.parse(localStorage.getItem("activeBoard")) || initialBoards[0],
   activeTask: {},
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case "getData":
-      return {
-        ...state,
-        boards: action.payload.boards,
-        activeBoard: action.payload.boards[0],
-      };
+    // case "getData":
+    //   return {
+    //     ...state,
+    //     // boards: JSON.parse(localStorage.getItem("boards")),
+    //     activeBoard: state.boards.length ? state.boards[0] : {},
+    //   };
     case "activeTask":
       return { ...state, activeTask: action.payload };
     case "updateActiveBoard":
@@ -81,7 +83,11 @@ function reducer(state, action) {
       const boards = state.boards.filter(
         (board) => board.id !== state.activeBoard.id,
       );
-      return { ...state, boards: boards, activeBoard: {} };
+      return {
+        ...state,
+        boards: boards,
+        activeBoard: {},
+      };
     case "EditColumnName":
       const columns = state.activeBoard.columns.map((col) =>
         col.id === action.payload.id
@@ -159,16 +165,19 @@ function AppProvider({ children }) {
   const [showNewColumn, setShowNewColumn] = useState(false);
   const [showNewTask, setShowNewTask] = useState(false);
   const [showEditTask, setShowEditTask] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(function () {
+    const sotredData = localStorage.getItem("darkMode");
+    return JSON.parse(sotredData);
+  });
 
-  useEffect(function () {
-    async function getData() {
-      const res = await fetch("/data/data.json");
-      const data = await res.json();
-      dispatch({ type: "getData", payload: data });
-    }
-    getData();
-  }, []);
+  // useEffect(function () {
+  //   async function getData() {
+  //     const res = await fetch("/data/data.json");
+  //     const data = await res.json();
+  //     dispatch({ type: "getData", payload: data });
+  //   }
+  //   getData();
+  // }, []);
 
   useEffect(
     function () {
@@ -176,6 +185,15 @@ function AppProvider({ children }) {
       else document.body.classList.remove("dark");
     },
     [darkMode],
+  );
+
+  useEffect(
+    function () {
+      localStorage.setItem("boards", JSON.stringify(boards));
+      localStorage.setItem("darkMode", JSON.stringify(darkMode));
+      localStorage.setItem("activeBoard", JSON.stringify(activeBoard));
+    },
+    [boards, darkMode, activeBoard],
   );
 
   return (

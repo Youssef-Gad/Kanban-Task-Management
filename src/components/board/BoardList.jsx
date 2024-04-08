@@ -13,9 +13,11 @@ function BoardList() {
         </p>
       </div>
 
-      {boards.map((board) => (
-        <Board key={board.id} board={board} />
-      ))}
+      <div className="scrollbar-hide h-[13rem] overflow-y-scroll">
+        {boards.map((board) => (
+          <Board key={board.id} board={board} />
+        ))}
+      </div>
 
       <button
         className={`flex w-full items-center rounded-r-full py-3 pl-7 text-main-purple transition-all duration-300 hover:opacity-70`}
